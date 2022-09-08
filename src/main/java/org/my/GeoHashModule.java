@@ -38,8 +38,8 @@ public class GeoHashModule {
             ret += latitudeBits.charAt(idx2++);
         }
 
-        while(idx2 < latitudeBits.length()){
-            ret += latitudeBits.charAt(idx2++);
+        while(idx1 < longitudeBits.length()){
+            ret += longitudeBits.charAt(idx1++);
         }
 
         return ret;
