@@ -24,4 +24,12 @@ public class GcsPoint implements Serializable {
         }
         return 0d;
     }
+
+    public GcsPoint addLatitude(double latitude){
+        return new GcsPoint(this.latitude + latitude, this.longitude);
+    }
+
+    public GcsPoint addLongitude(double longitude){
+        return new GcsPoint(this.latitude, this.longitude+ longitude);
+    }
 }
