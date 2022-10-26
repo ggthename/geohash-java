@@ -18,3 +18,6 @@ Digits and precision in km
 
 # reference
 http://geohash.org/
+
+# Sample Code
+https://github.com/ggthename/geohash-java/blob/master/src/test/java/org/my/GeoHashModuleTest.java
