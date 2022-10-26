@@ -1,10 +1,12 @@
 package org.my;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import java.io.Serializable;
 
 @EqualsAndHashCode
+@Getter
 public class GcsPoint implements Serializable {
     private final double latitude;
     private final double longitude;
