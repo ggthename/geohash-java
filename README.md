@@ -1,5 +1,6 @@
-# geohash
-get a geohash value from a coordinate (latitude,longitude)
+# geohash for java
+- get a geohash value from a coordinate (latitude,longitude)
+- get the geohash values included in a specific area (with southwest, northease points)
 
 # geohash length	lat bits	lng bits	lat error	lng error	km error
 Digits and precision in km
