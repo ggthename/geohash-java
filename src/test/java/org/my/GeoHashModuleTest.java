@@ -40,7 +40,7 @@ public class GeoHashModuleTest {
     }
 
     @Test
-    public void bBoxes_level(){
+    public void bBoxes_level_box2(){
         double lat = 37.57270365;
         double lng = 126.98815886;
 
@@ -60,7 +60,38 @@ public class GeoHashModuleTest {
         expected.put(GeoHashLevel.FIVE, 2);
         expected.put(GeoHashLevel.SIX, 2);
         expected.put(GeoHashLevel.SEVEN, 12);
-        expected.put(GeoHashLevel.EIGHT, 275);
+        expected.put(GeoHashLevel.EIGHT, 286);
+
+        for(GeoHashLevel level : GeoHashLevel.values()) {
+            Set<String> set = GeoHashModule.bBoxes(southWestPoint, northEastPoint, level);
+            Assert.assertEquals(Optional.ofNullable(expected.get(level)), Optional.ofNullable(set.size()));
+//            System.out.println(set.size());
+        }
+
+    }
+
+    @Test
+    public void bBoxes_level_box4(){
+        double lat = 37.57295386;
+        double lng = 127.00160207;
+
+        GcsPoint gcsPoint = new GcsPoint(lat, lng);
+
+        //가로 400, 세로 450에 대한 테스트 케이스
+        GcsPoint southWestPoint = new GcsPoint(gcsPoint.getLatitude() - (DIFF_LAT_1m * 200),
+                gcsPoint.getLongitude() - (DIFF_LNG_1m * 225));
+        GcsPoint northEastPoint = new GcsPoint(gcsPoint.getLatitude() + (DIFF_LAT_1m * 200),
+                gcsPoint.getLongitude() + (DIFF_LNG_1m * 225));
+
+        final Map<GeoHashLevel, Integer> expected = new HashMap();
+        expected.put(GeoHashLevel.ONE, 1);
+        expected.put(GeoHashLevel.TWO, 1);
+        expected.put(GeoHashLevel.THREE, 1);
+        expected.put(GeoHashLevel.FOUR, 1);
+        expected.put(GeoHashLevel.FIVE, 4);
+        expected.put(GeoHashLevel.SIX, 4);
+        expected.put(GeoHashLevel.SEVEN, 16);
+        expected.put(GeoHashLevel.EIGHT, 264);
 
         for(GeoHashLevel level : GeoHashLevel.values()) {
             Set<String> set = GeoHashModule.bBoxes(southWestPoint, northEastPoint, level);

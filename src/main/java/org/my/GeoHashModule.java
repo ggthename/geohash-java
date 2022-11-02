@@ -45,11 +45,15 @@ public class GeoHashModule {
             //
             basePoint = basePoint.addLatitude(DIFF_LAT_1m * geoHashLevel.getCellHeightMeter());
         }
-        // add boundary latitude
-        String value = GeoHashModule.getGeoHashUsingBase32(getBase32FromLongitudeLatitude(new GcsPoint(ne.getLatitude(), basePoint.getLongitude()), geoHashLevel));
-        ret.add(value);
-        //
+        // add boundary latitude (last longitude ->)
+        GcsPoint lastPoint = new GcsPoint(ne.getLatitude(), basePoint.getLongitude());
+        while(lastPoint.getLongitude() >= sw.getLongitude() &&
+                lastPoint.getLongitude() <= ne.getLongitude()){
+            String value = GeoHashModule.getGeoHashUsingBase32(getBase32FromLongitudeLatitude(lastPoint , geoHashLevel));
+            ret.add(value);
 
+            lastPoint=lastPoint.addLongitude(DIFF_LNG_1m * geoHashLevel.getCellWidthMeter());
+        }
         return ret;
     }
 
