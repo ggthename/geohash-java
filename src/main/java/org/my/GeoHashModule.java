@@ -94,13 +94,13 @@ public class GeoHashModule {
         return ret;
     }
 
-    private static String geoHashFromLongitudeLatitude(GcsPoint gcsPoint, GeoHashLevel geoHashLevel, GcsType geoHashType){
-        double val = gcsPoint.getValue(geoHashType);
+    private static String geoHashFromLongitudeLatitude(GcsPoint gcsPoint, GeoHashLevel geoHashLevel, GcsType gcsType){
+        double val = gcsPoint.getValue(gcsType);
 
-        double left = geoHashType.getLeft();
-        double right = geoHashType.getRight();
+        double left = gcsType.getLeft();
+        double right = gcsType.getRight();
         String ret ="";
-        int loopCount = geoHashLevel.getLoopCount(geoHashType);
+        int loopCount = geoHashLevel.getLoopCount(gcsType);
 
         for(int i=0 ; i<loopCount; i++){
             double mid = left + (right-left)/2d ;
